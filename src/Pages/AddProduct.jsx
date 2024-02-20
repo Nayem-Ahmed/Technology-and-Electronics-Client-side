@@ -1,10 +1,35 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { AddProductsPost } from '../Hook/product';
+import { imgUpload } from '../Hook/imbb';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate()
     const onSubmit = async (data) => {
-        console.log(data);
+        try {
+            console.log(data);
+
+            // Assuming imgUpload is a function that handles image upload
+            const imageData = await imgUpload(data.productImage[0]);
+            const img = imageData.data.display_url;
+            console.log(img);
+
+            // Add product
+            const sendproductData = await AddProductsPost({ ...data, productImage: img });
+            console.log(sendproductData);
+
+            
+            toast(' Add Products successfull')
+            reset();
+            navigate('/')
+
+        } catch (error) {
+            toast.error(error.message);
+
+        }
     };
     return (
         <div className='my-8'>
@@ -22,27 +47,27 @@ const AddProduct = () => {
                 <div className='grid grid-cols-2 gap-4'>
 
 
-                <label className="block mb-4">
-                    Product Name:
-                    <input
-                        type="text"
-                        name="productName"
-                        className="w-full mt-2 p-2 border border-gray-500 rounded-md"
-                        {...register('productName', { required: 'Product Name is required' })}
-                    />
-                    {errors.productName && <p className="text-red-500 mt-2">{errors.productName.message}</p>}
-                </label>
+                    <label className="block mb-4">
+                        Product Name:
+                        <input
+                            type="text"
+                            name="productName"
+                            className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                            {...register('productName', { required: 'Product Name is required' })}
+                        />
+                        {errors.productName && <p className="text-red-500 mt-2">{errors.productName.message}</p>}
+                    </label>
 
-                <label className="block mb-4">
-                    Product Type:
-                    <input
-                        type="text"
-                        name="productType"
-                        className="w-full mt-2 p-2 border border-gray-500 rounded-md"
-                        {...register('productType', { required: 'Product Type is required' })}
-                    />
-                    {errors.productType && <p className="text-red-500 mt-2">{errors.productType.message}</p>}
-                </label>
+                    <label className="block mb-4">
+                        Product Type:
+                        <input
+                            type="text"
+                            name="productType"
+                            className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                            {...register('productType', { required: 'Product Type is required' })}
+                        />
+                        {errors.productType && <p className="text-red-500 mt-2">{errors.productType.message}</p>}
+                    </label>
 
                 </div>
                 <label className="block mb-4 ">
@@ -55,30 +80,30 @@ const AddProduct = () => {
                     />
                     {errors.productPrice && <p className="text-red-500 mt-2">{errors.productPrice.message}</p>}
                 </label>
-                <div  className='grid grid-cols-2 gap-4'>
+                <div className='grid grid-cols-2 gap-4'>
 
-                <label className="block mb-4">
-                    Product Rating:
-                    <input
-                        type="number"
-                        name="productRating"
-                        step="any" // Allows float and decimal numbers
-                        className="w-full mt-2 p-2 border border-gray-500 rounded-md"
-                        {...register('productRating', { required: 'Product Rating is required' })}
-                    />
-                    {errors.productRating && <p className="text-red-500 mt-2">{errors.productRating.message}</p>}
-                </label>
+                    <label className="block mb-4">
+                        Product Rating:
+                        <input
+                            type="number"
+                            name="productRating"
+                            step="any" // Allows float and decimal numbers
+                            className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                            {...register('productRating', { required: 'Product Rating is required' })}
+                        />
+                        {errors.productRating && <p className="text-red-500 mt-2">{errors.productRating.message}</p>}
+                    </label>
 
-                <label className="block mb-4">
-                    Product Brand:
-                    <input
-                        type="text"
-                        name="productBrand"
-                        className="w-full mt-2 p-2 border border-gray-500 rounded-md"
-                        {...register('productBrand', { required: 'Product Brand is required' })}
-                    />
-                    {errors.productBrand && <p className="text-red-500 mt-2">{errors.productBrand.message}</p>}
-                </label>
+                    <label className="block mb-4">
+                        Product Brand:
+                        <input
+                            type="text"
+                            name="productBrand"
+                            className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                            {...register('productBrand', { required: 'Product Brand is required' })}
+                        />
+                        {errors.productBrand && <p className="text-red-500 mt-2">{errors.productBrand.message}</p>}
+                    </label>
                 </div>
                 <label className="block mb-4">
                     Product Details:
