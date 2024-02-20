@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import './navbar.css';
 import logo from '../assets/logo.png';
 import { IoIosArrowDown } from "react-icons/io";
+import useAuth from '../Hook/useAuth';
 
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { user, logOut } = useAuth();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -42,7 +44,21 @@ const Navbar = () => {
                     </li>
                     <li><Link className='hover:text-blue-500' to="/blog" onClick={closeMenu}>BLOG</Link></li>
                     <li><Link className='hover:text-blue-500' to="/contactus" onClick={closeMenu}>CONTACT US</Link></li>
-                    <Link to='/login'><button className="bg-blue-500 px-4 py-2 font-semibold text-white" type="button" onClick={closeMenu}>LOGIN</button></Link>
+                    {
+                        user?.email ?
+                            <div className='flex items-center gap-2'>
+                                <img className='rounded-full w-8' src={user?.photoURL} alt="" />
+                                <span>{user?.displayName}</span>
+                                <Link>
+                                    <button onClick={logOut} className="bg-blue-500 hover:bg-blue-700 px-4 py-2 font-semibold text-white">Logout</button>
+                                </Link>
+
+                            </div>
+
+                            :
+                            <Link onClick={logOut} to='/login'><button className="bg-blue-500 hover:bg-blue-700 px-4 py-2 font-semibold text-white" type="button" onClick={closeMenu}>LOGIN</button></Link>
+                    }
+
                 </ul>
             </div>
         </nav>

@@ -1,15 +1,16 @@
-import React from 'react';
+ 
 import { useForm } from 'react-hook-form';
 import { IoMdPerson, IoMdMail, IoMdLock, IoMdAttach } from 'react-icons/io';
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router-dom';
-// import useAuth from '../../Hooks/useAuth';
+ 
 import { toast } from 'react-toastify';
-// import { imgUpload } from '../../Hooks/imgbb';
-// import { saveUser } from '../../Hooks/auth';
-
+import { useContext } from 'react';
+import { AuthContext } from '../Provider/AuthProviders';
+import { imgUpload } from '../Hook/imbb';
+    
 const Signup = () => {
-    // const { createUser, updateUserProfile, signInWithGoogle } = useAuth();
+    const { createUser ,updateUserProfile,signInWithGoogle} = useContext(AuthContext)
     const navigate = useNavigate();
     const {
         register,
@@ -23,7 +24,7 @@ const Signup = () => {
             console.log(data);
 
             // Create user
-            // const { user } = await createUser(data.email, data.password);
+            const { user } = await createUser(data.email, data.password);
             console.log(user);
 
             // Assuming imgUpload is a function that handles image upload
@@ -34,8 +35,8 @@ const Signup = () => {
             await updateUserProfile(data.name,imageData?.data?.url);
 
             // save user data in Database
-            const sendUserData = await saveUser(user)
-            console.log(sendUserData)
+            // const sendUserData = await saveUser(user)
+            // console.log(sendUserData)
 
              // get token
 

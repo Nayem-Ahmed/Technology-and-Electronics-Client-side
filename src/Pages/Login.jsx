@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import { FaGoogle } from 'react-icons/fa';
 import { IoMdLock, IoMdMail } from 'react-icons/io';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// import useAuth from '../../Hooks/useAuth';
+import useAuth from '../Hook/useAuth';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-    // const { signIn, signInWithGoogle } = useAuth()
-    // const location = useLocation();
-    // const navigate = useNavigate();
+    const { signIn, signInWithGoogle } = useAuth()
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -27,11 +27,9 @@ const Login = () => {
 
             // get token
 
-            // toast('Signin successfull')
-            // navigate(location?.state ? location.state : '/');
+            toast.success('Signin successfull')
+            navigate(location?.state ? location.state : '/');
 
-
-            console.log('Signin successful!', user);
         } catch (error) {
             toast.error(error.message);
         }
@@ -44,24 +42,24 @@ const Login = () => {
             console.log('Google Sign-In clicked');
 
             //  signIn user
-            // const { user } = await signInWithGoogle();
+            const { user } = await signInWithGoogle();
 
             // save user data in Database
 
             // get token
 
-            // toast('Signin successfull')
-            // navigate(location?.state ? location.state : '/login');
+            toast.success('Signin successfull')
+            navigate(location?.state ? location.state : '/login');
 
 
             console.log('Signin successful!', user);
         } catch (error) {
-            // toast.error(error.message);
+            toast.error(error.message);
         }
     };
 
     return (
-        <div className="flex justify-center items-center h-screen my-6">
+        <div className="flex justify-center items-center h-screen my-4">
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-4 text-center">Log In</h2>
 
