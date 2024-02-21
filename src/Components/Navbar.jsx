@@ -31,7 +31,7 @@ const Navbar = () => {
                 <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
                     <li><Link className='hover:text-blue-500' to="/" onClick={closeMenu}>HOME</Link></li>
                     <li><Link className='hover:text-blue-500' to="/addproducts" onClick={closeMenu}>ADD PRODUCTS</Link></li>
-                    <li><Link className='hover:text-blue-500' to="/shop" onClick={closeMenu}>MY CART</Link></li>
+                    <li><Link className='hover:text-blue-500' to="/mycart" onClick={closeMenu}>MY CART</Link></li>
                     <li className='flex hover:text-blue-500'><Link className='hover:text-blue-500' onClick={closeMenu}>PAGES</Link><IoIosArrowDown className='relative mt-1'></IoIosArrowDown>
                         {/* DropdownMenu */}
                         <ul className='dropdown-menu'>
