@@ -39,7 +39,7 @@ const AddProduct = () => {
                     <input
                         type="file"
                         name="productImage"
-                        className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                        className={`shadow appearance-none border rounded w-full mt-2 p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.productImage ? 'border-red-500' : ''}`}
                         {...register('productImage', { required: 'Product Image is required' })}
                     />
                     {errors.productImage && <p className="text-red-500 mt-2">{errors.productImage.message}</p>}
@@ -52,7 +52,7 @@ const AddProduct = () => {
                         <input
                             type="text"
                             name="productName"
-                            className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                            className={`shadow appearance-none border rounded w-full mt-2 p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.productName ? 'border-red-500' : ''}`}
                             {...register('productName', { required: 'Product Name is required' })}
                         />
                         {errors.productName && <p className="text-red-500 mt-2">{errors.productName.message}</p>}
@@ -63,7 +63,7 @@ const AddProduct = () => {
                         <input
                             type="text"
                             name="productType"
-                            className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                            className={`shadow appearance-none border rounded w-full mt-2 p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.productType ? 'border-red-500' : ''}`}
                             {...register('productType', { required: 'Product Type is required' })}
                         />
                         {errors.productType && <p className="text-red-500 mt-2">{errors.productType.message}</p>}
@@ -75,7 +75,7 @@ const AddProduct = () => {
                     <input
                         type="number"
                         name="productPrice"
-                        className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                        className={`shadow appearance-none border rounded w-full mt-2 p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.productPrice ? 'border-red-500' : ''}`}
                         {...register('productPrice', { required: 'Product Price is required' })}
                     />
                     {errors.productPrice && <p className="text-red-500 mt-2">{errors.productPrice.message}</p>}
@@ -88,7 +88,7 @@ const AddProduct = () => {
                             type="number"
                             name="productRating"
                             step="any" // Allows float and decimal numbers
-                            className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                            className={`shadow appearance-none border rounded w-full mt-2 p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.productRating ? 'border-red-500' : ''}`}
                             {...register('productRating', { required: 'Product Rating is required' })}
                         />
                         {errors.productRating && <p className="text-red-500 mt-2">{errors.productRating.message}</p>}
@@ -99,7 +99,7 @@ const AddProduct = () => {
                         <input
                             type="text"
                             name="productBrand"
-                            className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                            className={`shadow appearance-none border rounded w-full mt-2 p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.productBrand ? 'border-red-500' : ''}`}
                             {...register('productBrand', { required: 'Product Brand is required' })}
                         />
                         {errors.productBrand && <p className="text-red-500 mt-2">{errors.productBrand.message}</p>}
@@ -109,7 +109,7 @@ const AddProduct = () => {
                     Product Details:
                     <textarea
                         name="productDetails"
-                        className="w-full mt-2 p-2 border border-gray-500 rounded-md"
+                        className={`shadow appearance-none border rounded w-full mt-2 p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.productDetails ? 'border-red-500' : ''}`}
                         {...register('productDetails', { required: 'Product Details is required' })}
                     />
                     {errors.productDetails && <p className="text-red-500 mt-2">{errors.productDetails.message}</p>}

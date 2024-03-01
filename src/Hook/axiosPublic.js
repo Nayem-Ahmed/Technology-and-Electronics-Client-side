@@ -1,6 +1,6 @@
 import axios from "axios";
 
 const axiosPublice = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://technology-elec-server.vercel.app',
 });
 export default axiosPublice;
